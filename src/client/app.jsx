@@ -4,6 +4,7 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import Home from './components/Home';
 import Title from './components/Title';
 import 'materialize-loader';
+import './style/app.css';
 
 render(
   <Router history={browserHistory}>

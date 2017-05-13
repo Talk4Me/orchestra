@@ -5,7 +5,7 @@ var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  devtool: 'eval-source-map',
+  devtool: 'cheap-eval-source-map',
   entry: [
     'react-hot-loader/patch',
     'webpack-dev-server/client?http://0.0.0.0:8080',
@@ -50,7 +50,7 @@ module.exports = {
       loader: 'json'
     }, {
       test: /\.css$/,
-      loader: 'style!css?modules&localIdentName=[name]---[local]---[hash:base64:5]'
+      loader: 'style-loader!css-loader'
     }, {
       test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
       loader:"url?limit=10000&mimetype=application/font-woff"

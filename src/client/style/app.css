@@ -1,0 +1,56 @@
+.Conversation {
+    display: flex !important;
+}
+
+.Conversation__field {
+    flex: 1;
+}
+
+.Chat {
+    position: absolute;
+    bottom: 0;
+    right: 40px;
+    height: 400px;
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+}
+
+.Chat__messages {
+    flex: 1;
+}
+
+.Chat__top-bar {
+    width: 100%;
+    height: 30px;
+    color: white;
+}
+
+.Chat__input-container {
+    display: flex;
+    width: 100%;
+}
+
+.Chat__send-btn {
+    margin: 12px 8px;
+}
+
+.Chat__msg-send {
+    min-height: 25px;
+    margin-left: 225px;
+    width: 60%;
+}
+
+.Chat__msg-receive {
+    min-height: 25px;
+    width: 60%;
+    margin-left: 10px;
+}
+
+.Chat__input {
+    flex: 1;
+}
+
+html, body, #root, .container {
+    height: 100%;
+}
