@@ -1,6 +1,7 @@
 'use strict';
 var PubNub = require('pubnub')
 const Wreck = require('wreck');
+var request = require('request');
 
 var pubnub = new PubNub({
     publishKey: "pub-c-76e8488a-fde8-47c9-ae8a-b16895b941a1",
@@ -61,32 +62,31 @@ pubnub.publish(
 );
 
 module.exports = [
-  {
-    method: 'POST',
-    path: '/watson/api/message',
-    handler: {
-        proxy: {
-            uri: 'http://34.208.47.19:5757/api/message'
+    {
+        method: 'POST',
+        path: '/watson/api/message',
+        handler: {
+            proxy: {
+                uri: 'http://34.208.47.19:5757/api/message'
+            }
         }
-    }
-  },
-  
-  {
-    method: 'GET',
-    path: '/api/hello',
-    handler: function (request, reply) {
-      const response = 'hello world';
-      reply(respons);
-    }
-  },
-  
-  {
-    method: 'GET',
-    path: '/api/dumbdata',
-    handler: function (request, reply) {
-    var json = require('./dumbdata.json');
-    console.log("json", json);
-      reply(json);
-    }
-  }
+    },
+    {
+        method: 'GET',
+        path: '/api/dumbdata',
+        handler: {
+            proxy: {
+                uri: 'https://chatdb-80b85.firebaseio.com/Messages.json'
+            }
+        }
+    },
+    {
+        method: 'GET',
+        path: '/api/hello',
+        handler: function(request, reply) {
+            const response = 'hello world';
+            reply(respons);
+        }
+    },
+
 ];
