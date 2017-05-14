@@ -1,5 +1,40 @@
+.ConversationList__wrapper {
+    width: 20%;
+    margin-right: 15px;
+}
+
+.Conversation__active {
+    background-color: #616161 !important;
+}
+
+.Conversation__field {
+    color: #e0e0e0;
+}
+
 .Conversation {
-    display: flex !important;
+    height: 50px;
+    padding: 3px 10px !important;
+    border: none !important;
+}
+
+.Conversation:hover {
+    background-color: #616161 !important;
+    cursor: pointer;
+}
+
+.nav-wrapper {
+    margin-left: 25px;
+    margin-top: 10px;
+}
+
+.ConversationList {
+    border: none;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+    height: calc(100% - 64px);
 }
 
 .Conversation__field {
@@ -7,13 +42,10 @@
 }
 
 .Chat {
-    position: absolute;
-    bottom: 0;
-    right: 40px;
-    height: 400px;
-    width: 600px;
     display: flex;
+    flex: 1;
     flex-direction: column;
+    height: calc(100% - 15px) !important;
 }
 
 .Chat__messages {
@@ -53,6 +85,8 @@
     width: 60%;
     border-radius: 5px;
     padding: 2px;
+    background: #424242;
+    color: #eee;
 }
 
 .Chat__msg-receive {
@@ -61,15 +95,18 @@
     margin-left: 10px;
     border-radius: 5px;
     padding: 2px;
+    background: #424242;
+    color: #eee;
 }
 
 .Chat__input {
+    color: #e0e0e0;
     flex: 1;
-    border: 1px solid #ccc !important;
+    border: 1px solid #616161 !important;
     margin: 0 !important;
     height: auto !important;
 }
 
-html, body, #root, .container {
+html, body, #root, .Wrapper {
     height: 100%;
 }

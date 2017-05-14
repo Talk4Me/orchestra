@@ -196,8 +196,10 @@ askWatson (message, id) {
   }
 
   getActiveConversation () {
-      if (this.state.activeConversation) {
-        const activeConversation = this.state.conversations.find(conv => { return conv.id === this.state.activeConversation;})
+      if (this.state.conversations.length > 0) {
+        let activeConversation = this.state.conversations.find(conv => { return conv.id === this.state.activeConversation;})
+        activeConversation = activeConversation || this.state.conversations[0];
+        console.log(activeConversation);
 
         return <Chat conversation={activeConversation} closeChat={this.closeChat}  sendMessage={(id, message) => this.sendMessage(id, message)} />;
       }
@@ -206,13 +208,13 @@ askWatson (message, id) {
   render () {
     return (
       <div className="Wrapper">
-        <nav className="grey darken-2">
-          <div className="nav-wrapper">
+        <nav className="grey darken-4">
+          <div className="nav-wrapper grey darken-4">
             <a href="#" className="brand-logo">Talk4Me</a>
           </div>
         </nav>
         <div className="container">
-            <ConversationList conversations={this.state.conversations} selectConversation={(conversation) => this.selectConversation(conversation.id)} />
+            <ConversationList activeConversation={this.state.activeConversation} conversations={this.state.conversations} selectConversation={(conversation) => this.selectConversation(conversation.id)} />
             {this.getActiveConversation()}
         </div>
         </div>

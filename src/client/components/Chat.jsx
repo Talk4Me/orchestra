@@ -45,24 +45,24 @@ export default class Chat extends React.Component {
     render () {
         return (
             <div className="Chat card">
-                <div className="Chat__top-bar grey darken-2">
+                <div className="Chat__top-bar grey darken-3">
                     {this.props.conversation.user}
                     <div className="Chat__close" onClick={this.props.closeChat}>x</div>
                 </div>
-                <div className="Chat__messages grey lighten-2">
+                <div className="Chat__messages grey darken-2">
                     {this.getMessages()}
                     <div 
                         style={ {float:"left", clear: "both"} }
                         ref={(el) => { this.messagesEnd = el; }}></div>
                     </div>
-                <div className="Chat__input-container grey lighten-3">
+                <div className="Chat__input-container grey darken-3">
                     <input 
                         ref={(el) => { this.input = el; }}
                         className="Chat__input" 
                         type="text" 
                     />
                     <button 
-                        className="Chat__send-btn waves-effect waves-light btn"
+                        className="Chat__send-btn waves-effect waves-light teal-darken 4 btn"
                         onClick={() => this.sendMessage('hey')}
                     >
                         Send
