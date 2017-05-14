@@ -47,27 +47,27 @@ export default class Home extends React.Component {
         }
     })
 
-    this.pubnub.publish(
-        {
-            message: { 
-                such: 'object'
-            },
-            channel: 'my_channel',
-            sendByPost: false,
-            storeInHistory: false,
-            meta: { 
-                "cool": "meta"
-            }
-        }, 
-        function (status, response) {
-            if (status.error) {
-                // handle error
-                console.log(status)
-            } else {
-                console.log("message Published w/ timetoken", response.timetoken)
-            }
-        }
-    );
+    // this.pubnub.publish(
+    //     {
+    //         message: { 
+    //             such: 'object'
+    //         },
+    //         channel: 'my_channel',
+    //         sendByPost: false,
+    //         storeInHistory: false,
+    //         meta: { 
+    //             "cool": "meta"
+    //         }
+    //     }, 
+    //     function (status, response) {
+    //         if (status.error) {
+    //             // handle error
+    //             console.log(status)
+    //         } else {
+    //             console.log("message Published w/ timetoken", response.timetoken)
+    //         }
+    //     }
+    // );
 
    
 
@@ -88,7 +88,6 @@ export default class Home extends React.Component {
     const text = fetch(request).then((res) => {
 
         res.json().then(response => {
-            console.log("res", response);
             this.setState({
                 conversations: response
             })
@@ -111,7 +110,9 @@ export default class Home extends React.Component {
 
   getActiveConversation () {
       if (this.state.activeConversation) {
-          return <Chat conversation={this.state.conversations[0]} closeChat={this.closeChat} />;
+        const activeConversation = this.state.conversations.find(conv => { return conv.id === this.state.activeConversation;})
+
+        return <Chat conversation={activeConversation} closeChat={this.closeChat} />;
       }
   }
 
@@ -119,7 +120,7 @@ export default class Home extends React.Component {
     return (
       <div className="Wrapper">
         <nav className="grey darken-2">
-          <div class="nav-wrapper">
+          <div className="nav-wrapper">
             <a href="#" class="brand-logo">Talk4Me</a>
           </div>
         </nav>

@@ -2,6 +2,7 @@
     {
         "source": "Tinder",
         "user": "Eric",
+        "id": "tindereric",
         "Messages": [
             {
                 "Timestamp": "05/13/2017 8:15:26PM",
@@ -10,24 +11,25 @@
             },
             {
                 "Timestamp": "05/13/2017 8:15:28PM",
-                "Sent": true,
-                "MessageBody": "Quan is hott."
+                "Sent": false,
+                "MessageBody": "Totes."
             }
         ]
     },
     {
         "source": "Tinder",
         "user": "Dayne",
+        "id": "tinderdayne",
         "Messages": [
             {
                 "Timestamp": "05/13/2017 8:14:26PM",
-                "Sent": true,
-                "MessageBody": "Quan is hott."
+                "Sent": false,
+                "MessageBody": "Quan is hotter than me."
             },
             {
                 "Timestamp": "05/13/2017 8:16:26PM",
                 "Sent": true,
-                "MessageBody": "Quan is hott."
+                "MessageBody": "I know."
             }
         ]
     }
