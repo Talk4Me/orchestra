@@ -112,6 +112,7 @@ export default class Chat extends React.Component {
     }
 
     handleKeyPress (ev) {
+        console.log('hello');
         if (ev.key === 'Enter') {
             this.sendMessage();
         }
@@ -147,11 +148,5 @@ export default class Chat extends React.Component {
                 </div>
             </div>
         );
-    }
-
-    handleKeyPress = (e) => {
-        if (e.key === 'Enter') {
-            console.log('do validate');
-        }
     }
 }
