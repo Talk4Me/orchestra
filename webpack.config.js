@@ -36,7 +36,7 @@ module.exports = {
             secure: false
         },
         '/watson': {
-            target: 'http://34.208.47.19:5757',
+            target: 'http://0.0.0.0:5757',
             secure: false,
             pathRewrite: {'^/watson' : ''}
         }

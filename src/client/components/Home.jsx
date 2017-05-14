@@ -65,8 +65,9 @@ export default class Home extends React.Component {
     }
 
     UpdateState(newState) {
+        console.log(newState)
             this.setState({
-                newState
+                conversations: newState
             });
     }
 
@@ -80,16 +81,22 @@ export default class Home extends React.Component {
 
         var uglyassboolean = false;
         var conversations = this.state.conversations;
-        this.askWatson(content, id);
+        console.log('adding message', m);
         conversations.forEach(conversation => {
             if(conversation["id"] == id) {
+
+                console.log('conv', conversation);
                 var messageObj = {
                     "Timestamp": timeStamp,
                     "Sent": false,
                     "MessageBody": content
                 }
-                conversation["Messages"].push(messageObj)
+                conversation["Messages"].push(messageObj);
+                console.log('new conv', conversation);
                 this.UpdateState(conversations);
+                if (!conversation.userTakeover) {
+                    this.askWatson(content, id);
+                }
                 uglyassboolean = true;
             }
         })
@@ -122,7 +129,8 @@ componentDidMount () {
             res.json().then(response => {
                 console.log("res", response);
                 this.setState({
-                    conversations: response
+                    conversations: response,
+                    activeConversation: response[0].id
                 })
             })
         
@@ -143,7 +151,7 @@ askWatson (message, id) {
 
             res.json().then(response => {
                 console.log("res", response.output.text[0]);
-                this.sendMessage(id, response.output.text[0]);
+                this.sendMessage(id, response.output.text[0], true);
             })
 
         });
@@ -162,7 +170,7 @@ askWatson (message, id) {
       });
   }
 
-  sendMessage (id, message) {
+  sendMessage (id, message, watson) {
     const conversations = this.state.conversations;
     const active = conversations.filter(conversation => {
       return conversation.id === id;
@@ -176,6 +184,11 @@ askWatson (message, id) {
             "MessageBody": message
         }
     );
+
+    if (!watson) {
+        active[0].userTakeover = true;
+    }
+
     console.log(active[0].user, message);
 
     this.pubnub.publish(
@@ -196,8 +209,10 @@ askWatson (message, id) {
   }
 
   getActiveConversation () {
-      if (this.state.activeConversation) {
-        const activeConversation = this.state.conversations.find(conv => { return conv.id === this.state.activeConversation;})
+      if (this.state.conversations.length > 0) {
+        let activeConversation = this.state.conversations.find(conv => { return conv.id === this.state.activeConversation;})
+        activeConversation = activeConversation || this.state.conversations[0];
+        console.log(activeConversation);
 
         return <Chat conversation={activeConversation} closeChat={this.closeChat}  sendMessage={(id, message) => this.sendMessage(id, message)} />;
       }
@@ -206,13 +221,13 @@ askWatson (message, id) {
   render () {
     return (
       <div className="Wrapper">
-        <nav className="grey darken-2">
-          <div className="nav-wrapper">
+        <nav className="grey darken-3">
+          <div className="nav-wrapper grey darken-3">
             <a href="#" className="brand-logo">Talk4Me</a>
           </div>
         </nav>
         <div className="container">
-            <ConversationList conversations={this.state.conversations} selectConversation={(conversation) => this.selectConversation(conversation.id)} />
+            <ConversationList activeConversation={this.state.activeConversation} conversations={this.state.conversations} selectConversation={(conversation) => this.selectConversation(conversation.id)} />
             {this.getActiveConversation()}
         </div>
         </div>

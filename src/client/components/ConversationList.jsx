@@ -9,6 +9,7 @@ export default class ConversationList extends React.Component {
         return this.props.conversations.map((conversation, idx) => {
           return  (
             <Conversation 
+                active={conversation.id === this.props.activeConversation}
                 conversation={conversation} 
                 selectConversation={() => this.props.selectConversation(conversation)} 
                 key={`conversation_${idx}`} 
@@ -19,12 +20,10 @@ export default class ConversationList extends React.Component {
 
     render () {
         return (
+            <div className="ConversationList__wrapper grey lighten-2">
             <div className="ConversationList collection">
-                <div className="collection-item Conversation">
-                    <span className="Conversation__field">User</span>
-                    <span className="Conversation__field">Source</span>
-                </div>
                 {this.getConversations()}
+            </div>
             </div>
         );
     }
