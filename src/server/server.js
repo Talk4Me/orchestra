@@ -18,6 +18,7 @@ const server = new Hapi.Server({
   }
 });
 server.register(Inert, () => {});
+server.register(require('h2o2'), () => {});
 
 if (process.env.NODE_ENV === 'production') {
   console.log('Production mode');

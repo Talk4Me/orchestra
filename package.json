@@ -17,6 +17,7 @@
   "license": "MIT",
   "dependencies": {
     "forever": "^0.15.3",
+    "h2o2": "^5.4.0",
     "hapi": "^16.0.1",
     "inert": "^4.0.3",
     "materialize-css": "^0.97.8",

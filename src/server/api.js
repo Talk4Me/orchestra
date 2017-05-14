@@ -64,13 +64,10 @@ module.exports = [
   {
     method: 'POST',
     path: '/watson/api/message',
-    handler: function (request, reply) {
-        console.log(request.payload);
-        Wreck.post('http://localhost:5757/api/message', { body: request.payload }, (err, res, payload) => {
-            /* do stuff */
-            console.log(payload, res);
-            reply(res);
-        })
+    handler: {
+        proxy: {
+            uri: 'http://localhost:5757/api/message'
+        }
     }
   },
   
