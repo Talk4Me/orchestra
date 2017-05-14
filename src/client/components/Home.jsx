@@ -82,8 +82,8 @@ export default class Home extends React.Component {
         var user = messageBody["SenderId"];
         var id = (source + user).toLowerCase().replace(/\s+/g, '');
 
+        var uglyassboolean = false;
         var conversations = this.state.conversations;
-
         conversations.forEach(conversation => {
             if(conversation["id"] == id) {
                 var messageObj = {
@@ -93,9 +93,12 @@ export default class Home extends React.Component {
                 }
                 conversation["Messages"].push(messageObj)
                 this.UpdateState(conversations);
-                return;
+                uglyassboolean = true;
             }
         })
+        if (uglyassboolean) {
+            return;
+        }
 
         var newIdMessageObj = {
             "id": id,
