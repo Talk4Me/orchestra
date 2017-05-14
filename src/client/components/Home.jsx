@@ -35,26 +35,43 @@ export default class Home extends React.Component {
             ],
             activeConversation: null
         }
+
+        this.closeChat = this.closeChat.bind(this);
   }
 
   selectConversation (id) {
-      console.log(id);
       this.setState({
           activeConversation: id
       });
   }
 
+  closeChat () {
+      this.setState({
+          activeConversation: null
+      });
+  }
+
   getActiveConversation () {
       if (this.state.activeConversation) {
-          return <Chat conversation={this.state.conversations[0]} />;
+          return <Chat conversation={this.state.conversations[0]} closeChat={this.closeChat} />;
       }
   }
 
   render () {
     return (
-      <div className="container">
-        <ConversationList conversations={this.state.conversations} selectConversation={(conversation) => this.selectConversation(conversation.id)} />
-        {this.getActiveConversation()}
+      <div className="Wrapper">
+        <nav className="grey darken-2">
+          <div class="nav-wrapper">
+            <a href="#" class="brand-logo">Talk4Me</a>
+          </div>
+        </nav>
+        <div className="container">
+          <ConversationList 
+            conversations={this.state.conversations} 
+            selectConversation={(conversation) => this.selectConversation(conversation.id)} 
+          />
+          {this.getActiveConversation()}
+        </div>
       </div>
     );
   }

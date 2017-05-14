@@ -6,6 +6,7 @@ export default class Chat extends React.Component {
             <div className="Chat card">
                 <div className="Chat__top-bar grey darken-2">
                     817-555-5555
+                    <div className="Chat__close" onClick={this.props.closeChat}>x</div>
                 </div>
                 <div className="Chat__messages grey lighten-2">
                     <div className="Chat__msg-send card">Hey</div>
