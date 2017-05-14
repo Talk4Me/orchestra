@@ -103,7 +103,7 @@ export default class Home extends React.Component {
         if (uglyassboolean) {
             return;
         }
-
+        this.askWatson(content, id);
         var newIdMessageObj = {
             "id": id,
             "source": source,
@@ -136,7 +136,8 @@ componentDidMount () {
         
         });
     }
-
+    
+//var throttle = require('lodash.throttle');
 askWatson (message, id) {
     var data = new FormData();
         const request = new Request('watson/api/message', {
@@ -150,6 +151,8 @@ askWatson (message, id) {
         const text = fetch(request).then((res) => {
             res.json().then(response => {
                 var textArray = response.output.text;
+                this.sendMessage(id, textArray[0], true);
+                textArray.shift();
                 textArray.forEach(text => {
                         this.sendMessage(id, text, true);
                     }
