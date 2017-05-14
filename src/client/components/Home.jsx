@@ -72,12 +72,12 @@ export default class Home extends React.Component {
     }
 
     AddMessage (m) {
+        console.log(m);
         var timeStamp = m.timetoken;
         var messageBody = m.message;
         var content = messageBody["Content"];
         var source = messageBody["SenderType"];
         var user = messageBody["SenderId"];
-        console.log(source, user);
         var id = (source + user).toLowerCase().replace(/\s+/g, '');
 
         var conversations = this.state.conversations;
@@ -85,7 +85,7 @@ export default class Home extends React.Component {
         conversations.forEach(conversation => {
             if(conversation["id"] == id) {
                 var messageObj = {
-                    "Timestamp": timestamp,
+                    "Timestamp": timeStamp,
                     "Sent": false,
                     "MessageBody": content
                 }
