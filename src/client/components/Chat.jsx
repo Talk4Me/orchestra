@@ -59,7 +59,8 @@ export default class Chat extends React.Component {
                     <input 
                         ref={(el) => { this.input = el; }}
                         className="Chat__input" 
-                        type="text" 
+                        type="text"
+                        //onKeyPress={onKeyPress={(e) => {(e.key === 'Enter' ? doSomething(this.refs.reference.value) : null)}}}
                     />
                     <button 
                         className="Chat__send-btn waves-effect waves-light btn"
@@ -70,5 +71,11 @@ export default class Chat extends React.Component {
                 </div>
             </div>
         );
+    }
+
+    handleKeyPress = (e) => {
+        if (e.key === 'Enter') {
+            console.log('do validate');
+        }
     }
 }
