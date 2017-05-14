@@ -108,11 +108,32 @@ export default class Home extends React.Component {
       });
   }
 
+  sendMessage (id, message) {
+    const conversations = this.state.conversations;
+    const active = conversations.filter(conversation => {
+      return conversation.id === id;
+    });
+
+    console.log(active, conversations);
+
+    active[0].Messages.push(
+        {
+            "Timestamp": "05/13/2017 8:16:26PM",
+            "Sent": true,
+            "MessageBody": message
+        }
+    );
+
+    this.setState({
+      conversations
+    });
+  }
+
   getActiveConversation () {
       if (this.state.activeConversation) {
         const activeConversation = this.state.conversations.find(conv => { return conv.id === this.state.activeConversation;})
 
-        return <Chat conversation={activeConversation} closeChat={this.closeChat} />;
+        return <Chat conversation={activeConversation} closeChat={this.closeChat}  sendMessage={(id, message) => this.sendMessage(id, message)} />;
       }
   }
 
@@ -121,7 +142,7 @@ export default class Home extends React.Component {
       <div className="Wrapper">
         <nav className="grey darken-2">
           <div className="nav-wrapper">
-            <a href="#" class="brand-logo">Talk4Me</a>
+            <a href="#" className="brand-logo">Talk4Me</a>
           </div>
         </nav>
         <div className="container">
