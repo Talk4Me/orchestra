@@ -10,7 +10,7 @@
 6 silly lifecycle orchestra@0.0.1~preserver: no script for preserver, continuing
 7 info lifecycle orchestra@0.0.1~server: orchestra@0.0.1
 8 verbose lifecycle orchestra@0.0.1~server: unsafe-perm in lifecycle true
-9 verbose lifecycle orchestra@0.0.1~server: PATH: /usr/local/lib/node_modules/npm/bin/node-gyp-bin:/Users/ericslater/Desktop/Orchestra/orchestra/node_modules/.bin://anaconda/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/share/dotnet:/usr/local/git/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands://anaconda/bin
+9 verbose lifecycle orchestra@0.0.1~server: PATH: /usr/local/lib/node_modules/npm/bin/node-gyp-bin:/Users/ericslater/Desktop/Orchestra/orchestra/node_modules/.bin://anaconda/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/share/dotnet:/usr/local/git/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands
 10 verbose lifecycle orchestra@0.0.1~server: CWD: /Users/ericslater/Desktop/Orchestra/orchestra
 11 silly lifecycle orchestra@0.0.1~server: Args: [ '-c', 'node ./src/server/server.js' ]
 12 silly lifecycle orchestra@0.0.1~server: Returned: code: 1  signal: null

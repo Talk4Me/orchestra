@@ -62,22 +62,20 @@ pubnub.publish(
 module.exports = [
   {
     method: 'GET',
-    path: '/api/sendMessage',
-    handler: function (request, reply) {
-      const response = 'hello world';
-      pubnub.publish();
-      reply(response);
-    }
-  }
-];
-
-module.exports = [
-  {
-    method: 'GET',
     path: '/api/hello',
     handler: function (request, reply) {
       const response = 'hello world';
       reply(response);
+    }
+  },
+  
+  {
+    method: 'GET',
+    path: '/api/dumbdata',
+    handler: function (request, reply) {
+    var json = require('./dumbdata.json');
+    console.log("json", json);
+      reply(json);
     }
   }
 ];
