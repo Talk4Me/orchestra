@@ -1,5 +1,6 @@
 'use strict';
 var PubNub = require('pubnub')
+const Wreck = require('wreck');
 
 var pubnub = new PubNub({
     publishKey: "pub-c-76e8488a-fde8-47c9-ae8a-b16895b941a1",
@@ -61,11 +62,24 @@ pubnub.publish(
 
 module.exports = [
   {
+    method: 'POST',
+    path: '/watson/api/message',
+    handler: function (request, reply) {
+        console.log(request.payload);
+        Wreck.post('http://localhost:5757/api/message', { body: request.payload }, (err, res, payload) => {
+            /* do stuff */
+            console.log(payload, res);
+            reply(res);
+        })
+    }
+  },
+  
+  {
     method: 'GET',
     path: '/api/hello',
     handler: function (request, reply) {
       const response = 'hello world';
-      reply(response);
+      reply(respons);
     }
   },
   
