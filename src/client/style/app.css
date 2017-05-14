@@ -102,6 +102,30 @@
     padding: 2px;
 }
 
+.Chat__msg-bad-tone {
+    background-color: #FF0000; 
+}
+
+.Chat__msg-badder-tone {
+    background-color: #C80000; 
+}
+
+.Chat__msg-worst-tone {
+    background-color: #A80000; 
+}
+
+.Chat__msg-good-tone {
+    background-color: #009900;
+}
+
+.Chat__msg-better-tone {
+    background-color: #00FF66;
+}
+
+.Chat__msg-best-tone {
+    background-color: #00FF00;
+}
+
 .Chat__input {
     flex: 1;
     border: 1px solid #616161 !important;
@@ -111,4 +135,13 @@
 
 html, body, #root, .Wrapper {
     height: 100%;
+}
+
+.Chat__Responder-Name {
+    margin-left: 10px;
+    margin-top: 5px;
+}
+
+.brand-logo {
+    text-align: center
 }

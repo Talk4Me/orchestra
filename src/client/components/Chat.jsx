@@ -24,14 +24,84 @@ export default class Chat extends React.Component {
     getMessages () {
         const messages = this.props.conversation.Messages;
         return messages.map((message, idx) => {
+            const bad = (message.Tone.anger > 0.5) || (message.Tone.sadness > 0.5)
+            const badder = (message.Tone.anger > 0.65) || (message.Tone.sadness > 0.65)
+            const worst = (message.Tone.anger > 0.8) || (message.Tone.sadness > 0.8)
+            const good = (message.Tone.joy > 0.5)
+            const better = (message.Tone.joy > 0.65)
+            const best = (message.Tone.joy > 0.8)
             if (message.Sent) {
-                return (
-                    <div className="Chat__msg-send card" key={`message${idx}`}>{message.MessageBody}</div>
-                );
+                if (best) {
+                    return (
+                        <div className="Chat__msg-send card Chat__msg-best-tone" key={`message${idx}`}>{message.MessageBody}</div>
+                    );
+                }                             
+                else if (better) {
+                    return (
+                        <div className="Chat__msg-send card Chat__msg-better-tone" key={`message${idx}`}>{message.MessageBody}</div>
+                    );
+                }                                    
+                else if (good) {
+                    return (
+                        <div className="Chat__msg-send card Chat__msg-good-tone" key={`message${idx}`}>{message.MessageBody}</div>
+                    ); 
+                }                   
+                else if (worst) {
+                    return (
+                        <div className="Chat__msg-send card Chat__msg-worst-tone" key={`message${idx}`}>{message.MessageBody}</div>
+                    );                                        
+                }
+                else if (badder) {
+                    return (
+                        <div className="Chat__msg-send card Chat__msg-badder-tone" key={`message${idx}`}>{message.MessageBody}</div>
+                    );                                        
+                }
+                else if (bad) {
+                    return (
+                        <div className="Chat__msg-send card Chat__msg-bad-tone" key={`message${idx}`}>{message.MessageBody}</div>
+                    );                                        
+                }
+                else {
+                    return (
+                        <div className="Chat__msg-send card" key={`message${idx}`}>{message.MessageBody}</div>
+                    );
+                }
             } else {
-                return (
-                    <div className="Chat__msg-receive card" key={`message${idx}`}>{message.MessageBody}</div>
-                );
+                if (best) {
+                    return (
+                        <div className="Chat__msg-receive card Chat__msg-best-tone" key={`message${idx}`}>{message.MessageBody}</div>
+                    );
+                }                
+                else if (better) {
+                    return (
+                        <div className="Chat__msg-receive card Chat__msg-better-tone" key={`message${idx}`}>{message.MessageBody}</div>
+                    );
+                }                
+                else if (good) {
+                    return (
+                        <div className="Chat__msg-receive card Chat__msg-good-tone" key={`message${idx}`}>{message.MessageBody}</div>
+                    );
+                }
+                else if (worst) {
+                    return (
+                        <div className="Chat__msg-receive card Chat__msg-worst-tone" key={`message${idx}`}>{message.MessageBody}</div>
+                    );
+                }                
+                else if (badder) {
+                    return (
+                        <div className="Chat__msg-receive card Chat__msg-badder-tone" key={`message${idx}`}>{message.MessageBody}</div>
+                    );
+                }
+                else if (bad) {
+                    return (
+                        <div className="Chat__msg-receive card Chat__msg-bad-tone" key={`message${idx}`}>{message.MessageBody}</div>
+                    );
+                }
+                else {
+                    return (
+                        <div className="Chat__msg-receive card" key={`message${idx}`}>{message.MessageBody}</div>
+                    );
+                }                
             }
         })
     }
@@ -51,7 +121,7 @@ export default class Chat extends React.Component {
         return (
             <div className="Chat card">
                 <div className="Chat__top-bar grey darken-3">
-                    {this.props.conversation.user}
+                    <span className="Chat__Responder-Name">{this.props.conversation.user}</span>
                     <div className="Chat__close" onClick={this.props.closeChat}>x</div>
                     <span className="Chat__user">{(this.props.conversation.userTakeover) ? 'User Active' : 'Bot Active' }</span>
                 </div>
@@ -77,5 +147,11 @@ export default class Chat extends React.Component {
                 </div>
             </div>
         );
+    }
+
+    handleKeyPress = (e) => {
+        if (e.key === 'Enter') {
+            console.log('do validate');
+        }
     }
 }
