@@ -24,14 +24,43 @@ export default class Chat extends React.Component {
     getMessages () {
         const messages = this.props.conversation.Messages;
         return messages.map((message, idx) => {
+            const bad = (message.Tone.anger > 0.6) || (message.Tone.sadness > 0.6)
+            let good = (message.Tone.joy > 0.6)
+            if (bad) {
+                good = false
+            }
             if (message.Sent) {
-                return (
-                    <div className="Chat__msg-send card" key={`message${idx}`}>{message.MessageBody}</div>
-                );
+                if (!good && !bad) {
+                    return (
+                        <div className="Chat__msg-send card" key={`message${idx}`}>{message.MessageBody}</div>
+                    );
+                }
+                if (good) {
+                    return (
+                        <div className="Chat__msg-send card Chat__msg-good-tone" key={`message${idx}`}>{message.MessageBody}</div>
+                    );                    
+                }
+                if (bad) {
+                    return (
+                        <div className="Chat__msg-send card Chat__msg-bad-tone" key={`message${idx}`}>{message.MessageBody}</div>
+                    );                                        
+                }
             } else {
-                return (
-                    <div className="Chat__msg-receive card" key={`message${idx}`}>{message.MessageBody}</div>
-                );
+                if (!good && !bad) {
+                    return (
+                        <div className="Chat__msg-receive card" key={`message${idx}`}>{message.MessageBody}</div>
+                    );
+                }
+                if (good) {
+                    return (
+                        <div className="Chat__msg-receive card Chat__msg-good-tone" key={`message${idx}`}>{message.MessageBody}</div>
+                    );
+                }
+                if (bad) {
+                    return (
+                        <div className="Chat__msg-receive card Chat__msg-bad-tone" key={`message${idx}`}>{message.MessageBody}</div>
+                    );
+                }
             }
         })
     }

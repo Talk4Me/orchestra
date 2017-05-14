@@ -102,6 +102,14 @@
     padding: 2px;
 }
 
+.Chat__msg-bad-tone {
+    background-color: red; 
+}
+
+.Chat__msg-good-tone {
+    background-color: green;
+}
+
 .Chat__input {
     flex: 1;
     border: 1px solid #616161 !important;
