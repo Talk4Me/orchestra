@@ -148,14 +148,14 @@ askWatson (message, id) {
             body: JSON.stringify({"input": {"text": message}})
         });
         const text = fetch(request).then((res) => {
-
             res.json().then(response => {
-                console.log("res", response.output.text[0]);
-                this.sendMessage(id, response.output.text[0], true);
+                var textArray = response.output.text;
+                textArray.forEach(text => {
+                        this.sendMessage(id, text, true);
+                    }
+                )
             })
-
         });
-
 }
 
   selectConversation (id) {

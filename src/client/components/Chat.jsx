@@ -46,7 +46,7 @@ export default class Chat extends React.Component {
         return (
             <div className="Chat card">
                 <div className="Chat__top-bar grey darken-3">
-                    {this.props.conversation.user}
+                    <span className="Chat__Responder-Name">{this.props.conversation.user}</span>
                     <div className="Chat__close" onClick={this.props.closeChat}>x</div>
                     <span className="Chat__user">{(this.props.conversation.userTakeover) ? 'User Active' : 'Bot Active' }</span>
                 </div>

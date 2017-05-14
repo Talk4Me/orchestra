@@ -112,3 +112,8 @@
 html, body, #root, .Wrapper {
     height: 100%;
 }
+
+.Chat__Responder-Name {
+    margin-left: 10px;
+    margin-top: 5px;
+}
