@@ -65,7 +65,6 @@ export default class Home extends React.Component {
     }
 
     UpdateState(newState) {
-        console.log(newState)
             this.setState({
                 conversations: newState
             });
@@ -81,28 +80,27 @@ export default class Home extends React.Component {
 
         var uglyassboolean = false;
         var conversations = this.state.conversations;
-        console.log('adding message', m);
         conversations.forEach(conversation => {
             if(conversation["id"] == id) {
 
-                console.log('conv', conversation);
                 var messageObj = {
                     "Timestamp": timeStamp,
                     "Sent": false,
                     "MessageBody": content
                 }
                 conversation["Messages"].push(messageObj);
-                console.log('new conv', conversation);
-                this.UpdateState(conversations);
                 if (!conversation.userTakeover) {
                     this.askWatson(content, id);
                 }
+                this.UpdateState(conversations);
                 uglyassboolean = true;
             }
         })
         if (uglyassboolean) {
             return;
         }
+
+        this.askWatson(content, id);
 
         var newIdMessageObj = {
             "id": id,
@@ -118,6 +116,42 @@ export default class Home extends React.Component {
         this.UpdateState(conversations)
     }
 
+    updateWithSteveStuff (conversations) {
+        conversations.forEach((conversation, idx) => {
+
+            let str = '';
+            conversation.Messages.forEach(message => {
+                str = str + message.MessageBody;
+            })
+
+        const request = new Request(`/api/personalize/${encodeURIComponent(str)}`, {
+            method: "GET",
+        });
+        fetch(request).then((res) => {
+
+            res.json().then(response => {
+                this.updateConversationSentiment(conversation, response);
+            })
+        
+        });
+        })
+    }
+
+    updateConversationSentiment (newConversation, val) {
+        const conversations = this.state.conversations;
+        const updated = conversations.filter(conversation => {
+            return conversation.id === newConversation.id;
+        });
+
+        updated[0].compatibility = val;
+
+        this.setState({
+            conversations: conversations
+        })
+
+
+    }
+
 componentDidMount () {
         const request = new Request('/api/dumbdata', {
             headers: new Headers({
@@ -127,11 +161,11 @@ componentDidMount () {
         const text = fetch(request).then((res) => {
 
             res.json().then(response => {
-                console.log("res", response);
                 this.setState({
                     conversations: response,
                     activeConversation: response[0].id
                 })
+                this.updateWithSteveStuff(response);
             })
         
         });
@@ -141,16 +175,11 @@ askWatson (message, id) {
     var data = new FormData();
         const request = new Request('watson/api/message', {
             method: "POST",
-            headers: new Headers({
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
-            }),
             body: JSON.stringify({"input": {"text": message}})
         });
         const text = fetch(request).then((res) => {
 
             res.json().then(response => {
-                console.log("res", response.output.text[0]);
                 this.sendMessage(id, response.output.text[0], true);
             })
 
@@ -185,11 +214,12 @@ askWatson (message, id) {
         }
     );
 
+    this.updateWithSteveStuff(active);
+
     if (!watson) {
         active[0].userTakeover = true;
     }
 
-    console.log(active[0].user, message);
 
     this.pubnub.publish(
     {
@@ -212,7 +242,6 @@ askWatson (message, id) {
       if (this.state.conversations.length > 0) {
         let activeConversation = this.state.conversations.find(conv => { return conv.id === this.state.activeConversation;})
         activeConversation = activeConversation || this.state.conversations[0];
-        console.log(activeConversation);
 
         return <Chat conversation={activeConversation} closeChat={this.closeChat}  sendMessage={(id, message) => this.sendMessage(id, message)} />;
       }

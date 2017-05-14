@@ -39,28 +39,6 @@ pubnub.addListener({
     }
 })
 
-pubnub.publish(
-    {
-        message: { 
-            such: 'object'
-        },
-        channel: 'my_channel',
-        sendByPost: false,
-        storeInHistory: false,
-        meta: { 
-            "cool": "meta"
-        }
-    }, 
-    function (status, response) {
-        if (status.error) {
-            // handle error
-            console.log(status)
-        } else {
-            console.log("message Published w/ timetoken", response.timetoken)
-        }
-    }
-);
-
 module.exports = [
     {
         method: 'POST',
@@ -68,6 +46,15 @@ module.exports = [
         handler: {
             proxy: {
                 uri: 'http://34.208.47.19:5757/api/message'
+            }
+        }
+    },
+    {
+        method: 'GET',
+        path: '/api/personalize/{text}',
+        handler: {
+            proxy: {
+                uri: 'http://52.42.158.42:5000/PersonaliTyzer?text={text}'
             }
         }
     },

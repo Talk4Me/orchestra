@@ -36,10 +36,15 @@ export default class Chat extends React.Component {
         })
     }
 
-    sendMessage (message) {
+    sendMessage () {
         this.props.sendMessage(this.props.conversation.id, this.input.value);
         this.input.value = '';
+    }
 
+    handleKeyPress (ev) {
+        if (ev.key === 'Enter') {
+            this.sendMessage();
+        }
     }
 
     render () {
@@ -61,6 +66,7 @@ export default class Chat extends React.Component {
                         ref={(el) => { this.input = el; }}
                         className="Chat__input" 
                         type="text" 
+                        onKeyPress={(ev) => this.handleKeyPress(ev)}
                     />
                     <button 
                         className="Chat__send-btn waves-effect waves-light btn teal darken-3"

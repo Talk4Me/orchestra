@@ -6,7 +6,13 @@ import Chat from './Chat';
 export default class ConversationList extends React.Component {
 
     getConversations () {
-        return this.props.conversations.map((conversation, idx) => {
+        const conversations = JSON.parse(JSON.stringify(this.props.conversations));
+        conversations.sort((a, b) => {
+            return b.compatibility - a.compatibility;
+        });
+
+        console.log(conversations);
+        return conversations.map((conversation, idx) => {
           return  (
             <Conversation 
                 active={conversation.id === this.props.activeConversation}
