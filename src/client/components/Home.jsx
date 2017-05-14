@@ -28,7 +28,6 @@ export default class Home extends React.Component {
                 var msg = m.message; 
                 var pubTT = m.timetoken;
                 this.AddMessage(m);
-                console.log("m", m);
             }),
             presence: function(p) {
                 var action = p.action; 
@@ -39,10 +38,8 @@ export default class Home extends React.Component {
                 var publishTime = p.timestamp;
                 var timetoken = p.timetoken;
                 var uuid = p.uuid;
-                console.log("p", p);
             },
             status: function(s) {
-                console.log("s", s);
             }
         })
 
@@ -74,7 +71,6 @@ export default class Home extends React.Component {
     }
 
     AddMessage (m) {
-        console.log(m);
         var timeStamp = m.timetoken;
         var messageBody = m.message;
         var content = messageBody["Content"];
