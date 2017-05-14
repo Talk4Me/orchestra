@@ -63,6 +63,8 @@ export default class Home extends React.Component {
             conversations: [],
             activeConversation: null
         }
+
+        this.closeChat = this.closeChat.bind(this);
     }
 
     UpdateState(newState) {
@@ -109,7 +111,7 @@ export default class Home extends React.Component {
         this.UpdateState(conversations)
     }
 
-    componentDidMount () {
+componentDidMount () {
         const request = new Request('/api/dumbdata', {
             headers: new Headers({
                 'Content-Type': 'application/json'
@@ -127,24 +129,59 @@ export default class Home extends React.Component {
         });
     }
 
-    selectConversation (id) {
-        console.log(id);
-        this.setState({
-            activeConversation: id
-        });
-    }
+  selectConversation (id) {
+      this.setState({
+          activeConversation: id
+      });
+  }
 
-    getActiveConversation () {
-        if (this.state.activeConversation) {
-            return <Chat conversation={this.state.conversations[0]} />;
+  closeChat () {
+      this.setState({
+          activeConversation: null
+      });
+  }
+
+  sendMessage (id, message) {
+    const conversations = this.state.conversations;
+    const active = conversations.filter(conversation => {
+      return conversation.id === id;
+    });
+
+    console.log(active, conversations);
+
+    active[0].Messages.push(
+        {
+            "Timestamp": "05/13/2017 8:16:26PM",
+            "Sent": true,
+            "MessageBody": message
         }
-    }
+    );
 
-    render () {
-        return (
+    this.setState({
+      conversations
+    });
+  }
+
+  getActiveConversation () {
+      if (this.state.activeConversation) {
+        const activeConversation = this.state.conversations.find(conv => { return conv.id === this.state.activeConversation;})
+
+        return <Chat conversation={activeConversation} closeChat={this.closeChat}  sendMessage={(id, message) => this.sendMessage(id, message)} />;
+      }
+  }
+
+  render () {
+    return (
+      <div className="Wrapper">
+        <nav className="grey darken-2">
+          <div className="nav-wrapper">
+            <a href="#" className="brand-logo">Talk4Me</a>
+          </div>
+        </nav>
         <div className="container">
             <ConversationList conversations={this.state.conversations} selectConversation={(conversation) => this.selectConversation(conversation.id)} />
             {this.getActiveConversation()}
+        </div>
         </div>
         );
     }
