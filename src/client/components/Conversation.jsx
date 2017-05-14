@@ -4,6 +4,8 @@ export default class Conversation extends React.Component {
     PrettyPrintPhoneNumber(stringg) {
             if (isNaN(stringg))
                 return stringg;
+            if (typeof(stringg) != "string")
+                return stringg;
             return '+ ' + stringg[0] + ' (' + stringg.substring(1,4) + ') ' + stringg.substring(4,7) + '-' + stringg.substring(7);
         }
     render () {

@@ -151,8 +151,10 @@ export default class Home extends React.Component {
         const updated = conversations.filter(conversation => {
             return conversation.id === newConversation.id;
         });
-
-        updated[0].compatibility = val;
+        if (val == 0) {
+            val = 0.5;
+        }
+        updated[0].compatibility = 1 - val;
 
         this.setState({
             conversations: conversations
@@ -189,10 +191,13 @@ askWatson (message, id) {
         });
         const text = fetch(request).then((res) => {
             res.json().then(response => {
+                console.log("res",res);
                 var textArray = response.output.text;
-                this.sendMessage(id, textArray[0], true);
-                textArray.shift();
+                // this.sendMessage(id, textArray[0], true);
+                // textArray.shift();
+                console.log(textArray);
                 textArray.forEach(text => {
+                        console.log(text);
                         this.sendMessage(id, text, true);
                     }
                 )
