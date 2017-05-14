@@ -152,6 +152,7 @@ askWatson (message, id) {
                 var textArray = response.output.text;
                 textArray.forEach(text => {
                         this.sendMessage(id, text, true);
+                        await sleep(850);
                     }
                 )
             })
