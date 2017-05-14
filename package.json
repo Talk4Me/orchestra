@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "rimraf dist && webpack-dev-server --host 0.0.0.0 --watch-poll --inline --hot",
-    "nserver": "NODE_ENV=production node ./src/server/server.js",
+    "nserver": "NODE_ENV=production forever start ./src/server/server.js",
     "server": "node ./src/server/server.js",
     "stop": "forever stopall",
     "build": "webpack --config ./webpack.production.config.js --progress --profile --colors",
