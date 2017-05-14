@@ -66,7 +66,7 @@ module.exports = [
     path: '/watson/api/message',
     handler: {
         proxy: {
-            uri: 'http://0.0.0.0:5757/api/message'
+            uri: 'http://34.208.47.19:5757/api/message'
         }
     }
   },
