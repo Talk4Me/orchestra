@@ -80,6 +80,7 @@ export default class Home extends React.Component {
 
         var uglyassboolean = false;
         var conversations = this.state.conversations;
+        this.askWatson();
         conversations.forEach(conversation => {
             if(conversation["id"] == id) {
                 var messageObj = {
@@ -127,6 +128,27 @@ componentDidMount () {
         
         });
     }
+
+askWatson (message, id) {
+    var data = new FormData();
+    data.append( "json", JSON.stringify({"input": {"text": "hey"}}));
+        const request = new Request('watson/api/message', {
+            method: "POST",
+            headers: new Headers({
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            }),
+            body: JSON.stringify({"input": {"text": "hey"}})
+        });
+        const text = fetch(request).then((res) => {
+
+            res.json().then(response => {
+                console.log("res", response.output.text[0]);
+            })
+
+        });
+
+}
 
   selectConversation (id) {
       this.setState({
