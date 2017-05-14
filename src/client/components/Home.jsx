@@ -77,6 +77,13 @@ export default class Home extends React.Component {
         var content = messageBody["Content"];
         var source = messageBody["SenderType"];
         var user = messageBody["SenderId"];
+        var tone = {
+            "anger": (typeof m.message.anger === 'undefined') ? 0 : m.message.anger,
+            "disgust": (typeof m.message.disgust === 'undefined') ? 0 : m.message.disgust,
+            "fear": (typeof m.message.fear === 'undefined') ? 0 : m.message.fear,
+            "joy": (typeof m.message.joy === 'undefined') ? 0 : m.message.joy,
+            "sadness": (typeof m.message.sadness === 'undefined') ? 0 : m.message.sadness,
+        }
         var id = (source + user).toLowerCase().replace(/\s+/g, '');
 
         var uglyassboolean = false;
@@ -89,7 +96,8 @@ export default class Home extends React.Component {
                 var messageObj = {
                     "Timestamp": timeStamp,
                     "Sent": false,
-                    "MessageBody": content
+                    "MessageBody": content,
+                    "Tone": tone,
                 }
                 conversation["Messages"].push(messageObj);
                 console.log('new conv', conversation);
@@ -111,7 +119,8 @@ export default class Home extends React.Component {
             "Messages": [{
                 "Timestamp": timeStamp,
                 "Sent": false,
-                "MessageBody": content
+                "MessageBody": content,
+                "Tone": tone,
             }]
         };
         conversations.push(newIdMessageObj);
@@ -181,7 +190,14 @@ askWatson (message, id) {
         {
             "Timestamp": "05/13/2017 8:16:26PM",
             "Sent": true,
-            "MessageBody": message
+            "MessageBody": message,
+            "Tone": {
+                "anger": 0,
+                "disgust": 0,
+                "fear": 0,
+                "joy": 0,
+                "sadness": 0,    
+            }
         }
     );
 
