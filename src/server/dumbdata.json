@@ -1,34 +1,81 @@
 [
     {
-        "source": "Tinder",
-        "user": "Eric",
-        "Messages": [
-            {
+        "source": "phone",
+        "user": "Rachel Green",
+        "Messages": [{
                 "Timestamp": "05/13/2017 8:15:26PM",
-                "Sent": true,
-                "MessageBody": "Quan is hott."
-            },
-            {
-                "Timestamp": "05/13/2017 8:15:28PM",
-                "Sent": true,
-                "MessageBody": "Quan is hott."
-            }
-        ]
-    },
-    {
-        "source": "Tinder",
-        "user": "Dayne",
-        "Messages": [
-            {
-                "Timestamp": "05/13/2017 8:14:26PM",
-                "Sent": true,
-                "MessageBody": "Quan is hott."
+                "Sent": false,
+                "MessageBody": "Hey, my name is Rachel Green. How's it going?"
             },
             {
                 "Timestamp": "05/13/2017 8:16:26PM",
                 "Sent": true,
-                "MessageBody": "Quan is hott."
-            }
-        ]
+                "MessageBody": "Nothing much, I had a long day at work today."
+            },
+            {
+                "Timestamp": "05/13/2017 8:16:14PM",
+                "Sent": false,
+                "MessageBody": "Sorry to hear that. What do you do?"
+            },
+            {
+                "Timestamp": "05/13/2017 8:16:59PM",
+                "Sent": true,
+                "MessageBody": "I'm a software developer for a firm in conneticut; what do you do?"
+            },
+            {
+                "Timestamp": "05/13/2017 8:19:30PM",
+                "Sent": false,
+                "MessageBody": "That sounds pretty cool. I work in investman banking at JPM. I have long hours too, but at least I like my coworkers."
+            },
+            {
+                "Timestamp": "05/13/2017 8:20:22PM",
+                "Sent": true,
+                "MessageBody": "Hmm, that's interesting - why do you say that?"
+            },
+            {
+                "Timestamp": "05/13/2017 8:25:57PM",
+                "Sent": false,
+                "MessageBody": "I thought that my coworkers were going to be boring middle aged people, but there's a lot of cool people that I've met that I relate to."
+            }]
+    },
+    {
+        "source": "phone",
+        "user": "Phoebe Buffay",
+        "Messages": [
+            {
+                "Timestamp": "05/14/2017 8:15:26AM",
+                "Sent": true,
+                "MessageBody": "Hey, my name is Quan. We met at the bar last night - we bonded over how Game of thrones is overrated."
+            },
+            {
+                "Timestamp": "05/4/2017 8:15:37AM",
+                "Sent": false,
+                "MessageBody": "Oh hi! I remember you. I'm not gonna lie, you had some corny jokes - but I'm not going to judge you (much) for that."
+            },
+            {
+                "Timestamp": "05/4/2017 8:16:40AM",
+                "Sent": true,
+                "MessageBody": "haha - yeah. So tell me, what do you do?"
+            },
+            {
+                "Timestamp": "05/4/2017 8:17:15AM",
+                "Sent": false,
+                "MessageBody": "I'm a masseuse in downtown manhattan. I've been working at a small place for a while, but I might switch to a bigger place where the pay is better."
+            },
+            {
+                "Timestamp": "05/4/2017 8:17:40AM",
+                "Sent": true,
+                "MessageBody": "Do you like what you do?"
+            },
+            {
+                "Timestamp": "05/4/2017 8:19:16AM",
+                "Sent": false,
+                "MessageBody": "Kinda. I like working with a smaller base of clients, but I hate the idea of working for a large coporation. Ugh. But anyways, what do you do?"
+            },
+            {
+                "Timestamp": "05/4/2017 8:19:36AM",
+                "Sent": true,
+                "MessageBody": "I'm a full stack software developer. I like what I'm doing so far, and I like the people that I'm working with."
+            }]
     }
 ]
