@@ -178,6 +178,18 @@ askWatson (message, id) {
         }
     );
 
+    this.pubnub.publish(
+    {
+        message: {
+            "SenderType": active[0].source,
+            "SenderId": active[0].user,
+            "Content": message
+        },
+        channel: 'outbound',
+        sendByPost: false,
+        storeInHistory: false
+    });
+
     this.setState({
       conversations
     });
