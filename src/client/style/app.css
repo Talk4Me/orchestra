@@ -3,22 +3,28 @@
     margin-right: 15px;
 }
 
-.Conversation__active {
-    background-color: #616161 !important;
+.Chat__user {
+    float: right;
+    margin-right: 15px;
+    margin-top: 3px;
 }
 
-.Conversation__field {
-    color: #e0e0e0;
+.Conversation__active.collection-item {
+    background-color: #424242 !important;
+    color: #e0e0e0 !important;
 }
 
 .Conversation {
     height: 50px;
     padding: 3px 10px !important;
     border: none !important;
+    background-color: #e0e0e0 !important;
+    color: #424242 !important;
 }
 
 .Conversation:hover {
-    background-color: #616161 !important;
+    background-color: #424242 !important;
+    color: #e0e0e0 !important;
     cursor: pointer;
 }
 
@@ -72,6 +78,7 @@
 .Chat__close {
     float: right;
     margin-right: 15px;
+    margin-top: 3px;
     cursor: pointer;
 }
 
@@ -85,8 +92,6 @@
     width: 60%;
     border-radius: 5px;
     padding: 2px;
-    background: #424242;
-    color: #eee;
 }
 
 .Chat__msg-receive {
@@ -95,12 +100,9 @@
     margin-left: 10px;
     border-radius: 5px;
     padding: 2px;
-    background: #424242;
-    color: #eee;
 }
 
 .Chat__input {
-    color: #e0e0e0;
     flex: 1;
     border: 1px solid #616161 !important;
     margin: 0 !important;

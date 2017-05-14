@@ -20,8 +20,8 @@ export default class ConversationList extends React.Component {
 
     render () {
         return (
-            <div className="ConversationList__wrapper grey darken-3">
-            <div className="ConversationList grey darken-3 collection">
+            <div className="ConversationList__wrapper grey lighten-2">
+            <div className="ConversationList collection">
                 {this.getConversations()}
             </div>
             </div>
