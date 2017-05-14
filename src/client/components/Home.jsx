@@ -74,8 +74,10 @@ export default class Home extends React.Component {
     AddMessage (m) {
         var timeStamp = m.timetoken;
         var messageBody = m.message;
-        var source = messageBody["Source"];
-        var user = messageBody["User"];
+        var content = messageBody["Content"];
+        var source = messageBody["SenderType"];
+        var user = messageBody["SenderId"];
+        console.log(source, user);
         var id = (source + user).toLowerCase().replace(/\s+/g, '');
 
         var conversations = this.state.conversations;
@@ -85,7 +87,7 @@ export default class Home extends React.Component {
                 var messageObj = {
                     "Timestamp": timestamp,
                     "Sent": false,
-                    "MessageBody": messageBody
+                    "MessageBody": content
                 }
                 conversation["Messages"].push(messageObj)
                 this.UpdateState(conversations);
@@ -100,7 +102,7 @@ export default class Home extends React.Component {
             "Messages": [{
                 "Timestamp": timeStamp,
                 "Sent": false,
-                "MessageBody": messageBody
+                "MessageBody": content
             }]
         };
         conversations.push(newIdMessageObj);
