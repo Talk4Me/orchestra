@@ -187,6 +187,10 @@ askWatson (message, id) {
     var data = new FormData();
         const request = new Request('watson/api/message', {
             method: "POST",
+            headers: new Headers({
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            }),
             body: JSON.stringify({"input": {"text": message}})
         });
         const text = fetch(request).then((res) => {
