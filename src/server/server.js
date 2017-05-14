@@ -6,6 +6,7 @@ const Path = require('path');
 
 const routes = require('./routes');
 const api = require('./api');
+const pubnub = require('./pubnub')
 
 const server = new Hapi.Server({
   connections: {
