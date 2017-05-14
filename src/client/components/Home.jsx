@@ -16,7 +16,7 @@ export default class Home extends React.Component {
         })
 
         this.pubnub.subscribe({
-            channels: ['my_channel'],
+            channels: ['inbound'],
             withPresence: true 
         })
 
